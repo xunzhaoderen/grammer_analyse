@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1367732893 source:c:\users\cs\documents\grammer_anaylise\main.cpp
+	<iostream>
+	"Production.h"
+	<vector>
+	<string>
+	<stack>
+	<fstream>
+	<queue>
+	"inter_code.h"
+
+1366940981 c:\users\cs\documents\grammer_anaylise\production.h
+	<vector>
+	<cstring>
+	<map>
+	<string>
+
+1367728226 source:c:\users\cs\documents\grammer_anaylise\production.cpp
+	"Production.h"
+	<fstream>
+	<iostream>
+	<string>
+	<stdio.h>
+	<stdlib.h>
+
+1367766398 c:\users\cs\documents\grammer_anaylise\inter_code.h
+	<string>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+

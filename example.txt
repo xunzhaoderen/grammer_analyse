@@ -1,0 +1,113 @@
+Var program 2
+Var block 3
+Var decls 4
+Var decl 58
+Var type 5
+Var stmts 6
+Var stmt 7
+Var bool 8
+Var loc 9
+Var join 10
+Var equality 11
+Var rel 12
+Var expr 13
+Var term 14
+Var unary 15
+Var factor 16
+Var decls' 30
+Var type' 31
+Var stmts' 32
+Var bool' 33
+Var join' 34
+Var equality' 35
+Var expr' 36
+Var term' 37
+Var loc' 57
+Ter id 17
+Ter { 18
+Ter } 19
+Ter num 20
+Ter basic 21
+Ter if 22
+Ter else 23
+Ter while 24
+Ter do 25
+Ter break 26
+Ter real 27
+Ter true 28
+Ter false 29
+Ter = 38
+Ter ( 39
+Ter ) 40
+Ter ; 41
+Ter [ 42
+Ter ] 43
+Ter || 44
+Ter && 45
+Ter == 46
+Ter != 47
+Ter < 48
+Ter <= 49
+Ter > 50
+Ter >= 51
+Ter + 52
+Ter - 53
+Ter * 54
+Ter / 55
+Ter ! 56
+%%
+program = block
+block = { decls stmts }
+decls = decls'
+decls' = decl decls'
+decls' = my_null
+decl = type id
+type = basic type'
+type' = [ num ] type' 
+type' = my_null
+stmts = stmts' 
+stmts' = stmt stmts'
+stmts' = my_null
+stmt = loc = bool
+stmt = if ( bool ) stmt
+stmt = if ( bool ) stmt else stmt
+stmt = while ( bool ) stmt
+stmt = do stmt while ( bool ) ;
+stmt = break ;
+stmt = block
+loc = id loc'
+loc' = [ bool ] loc'
+loc' = my_null 
+bool = join bool' 
+bool' = || join bool'
+bool' = my_null
+join = equality join'
+join' = && equality join'
+join' = my_null
+equality = rel equality'
+equality' = == rel equality'
+equality' = != rel equality'
+equality' = my_null
+rel = expr < expr
+rel = expr <= expr
+rel = expr >= expr
+rel = expr > expr
+rel = expr
+expr = term expr'
+expr' = + term expr'
+expr' = - term expr'
+expr' = my_null
+term = unary term'
+term' = * unary term'
+term' = / unary term'
+term' = my_null
+unary = ! unary
+unary = - unary
+unary = factor
+factor = ( bool )
+factor = loc
+factor = num
+factor = real
+factor = true
+factor = false
+#

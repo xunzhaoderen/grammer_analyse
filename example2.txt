@@ -1,0 +1,16 @@
+Var S' 1
+Var S 2
+Var L 3
+Var R 4
+Ter = 5
+Ter * 6
+Ter i 7
+%%
+S' = S
+S = L = R
+S = R
+L = * R
+L = i
+R = L
+#
+

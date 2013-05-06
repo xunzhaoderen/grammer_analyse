@@ -1,0 +1,13 @@
+Var A' 1
+Var A  2
+Var B  5
+Ter a  3
+Ter b  4
+Ter c  6
+%%
+A' = A
+A = A a
+A = my_null
+B = b
+B = my_null
+#

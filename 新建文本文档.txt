@@ -1,0 +1,124 @@
+ /* case 22://expression_statement = ;
+           break;
+        case 23://expression_statement = expression ;
+            break;
+        case 24://expression = assignment_expression
+            break;
+        case 25://expression = id op num
+
+            //tmp.truelist = makelist(inter_code.size());
+            //tmp.falselist = makelist(inter_code.size()+1);
+            //tmp_code.push_back("if");
+            sprintf(buffer,"%s%s%s",symble.at(symble.size()-3).value,symble.at(symble.size()-2).op,symble.back().value);
+            tmp_code.push_back(buffer);
+            tmp_code.push_back("goto");
+
+            inter_code.push_back(tmp_code);
+            out<<"if"<<" "<<symble.at(symble.size()-3).value<<" "<<symble.at(symble.size()-2).op
+            <<" "<<symble.back().value<<" "<<"goto -"<<endl;
+            break;
+        case 26://expression = id ++
+            tmp_code.push_back(symble.at(symble.size()-2).value);
+            tmp_code.push_back("=");
+              tmp_code.push_back(symble.at(symble.size()-2).value);
+                tmp_code.push_back("+");
+                tmp_code.push_back("1");
+                inter_code.push_back(tmp_code);
+            out<<symble.at(symble.size()-2).value<<"="<<symble.at(symble.size()-2).value<<"+"<<"1"<<endl;
+            break;
+        case 27://assignment_expression = declarator = assignment_expression
+            if(symble.at(symble.size()-3).offset == "")
+            {
+                tmp_code.push_back(symble.at(symble.size()-3).value);
+                tmp_code.push_back("=");
+                tmp_code.push_back(symble.back().addr);
+
+                inter_code.push_back(tmp_code);
+                out<<symble.at(symble.size()-3).value<<" "<<"= "<<symble.back().addr<<endl;
+            }
+            else
+            {
+                tmp_code.push_back(symble.at(symble.size()-3).array);
+                tmp_code.push_back("=");
+                tmp_code.push_back(symble.back().addr);
+
+                inter_code.push_back(tmp_code);
+                out<<symble.at(symble.size()-3).array<<" "
+                <<"="<<" "<<symble.back().addr<<endl;
+            }
+            break;
+        case 28://assignment_expression = unary_expression unary_op assignment_expression
+            tmp.addr=newtemp();
+            tmp.array= tmp.addr;
+
+            tmp_code.push_back(tmp.addr);
+            tmp_code.push_back("=");
+            tmp_code.push_back(symble.at(symble.size()-3).array);
+            tmp_code.push_back(symble.at(symble.size()-2).op);
+            tmp_code.push_back(symble.back().array);
+
+            inter_code.push_back(tmp_code);
+            out<<tmp.addr<<" "<<"="<<" "<<symble.at(symble.size()-3).array<<" "<<symble.at(symble.size()-2).op<<
+            " "<<symble.back().array<<endl;
+            break;
+        case 29://assignment_expression = num
+            tmp.addr=newtemp();
+            tmp.array=symble.back().value;
+
+            tmp_code.push_back(tmp.addr);
+            tmp_code.push_back("=");
+            tmp_code.push_back(tmp.array);
+            inter_code.push_back(tmp_code);
+            out<<tmp.addr<<" "<<"="<<" "<<tmp.array<<endl;
+            break;
+        case 30://assignment_expression = declarator
+            tmp.array = symble.back().array;
+
+            break;
+        case 31://unary_expression = declarator
+            tmp.array = symble.back().array;
+            break;
+        case 32://unary_expression = num
+            tmp.value=symble.back().value;
+            tmp.array =tmp.value;
+            break;
+        case 33://op = <
+            tmp.op="<";
+            break;
+        case 34://op = >=
+            tmp.op=">=";
+            break;
+        case 35://unary_op = +
+            tmp.op="+";
+            break;
+        case 36://unary_op = -
+            tmp.op="-";
+            break;
+        case 37://unary_op = *
+            tmp.op="*";
+            break;
+        case 38://unary_op = /
+            tmp.op="/";
+            break;
+        case 39://return num
+            tmp_code.push_back("end");
+            inter_code.push_back(tmp_code);
+            out<<"end"<<endl;
+            break;
+        case 40://statement = if ( expression ) M2 statement M3 else M4 statement
+            backpatch(symble.at(symble.size()-8).truelist,symble.at(symble.size()-6).quad);
+            backpatch(symble.at(symble.size()-8).falselist,symble.at(symble.size()-2).quad);
+            break;
+        case 41://M2 = my_null
+            sprintf(buffer,"%d",inter_code.size());
+            tmp.quad = buffer;
+            break;
+        case 42://M3 = my_null
+            tmp.nextlist=makelist(inter_code.size());
+            tmp_code.push_back("goto");
+            inter_code.push_back(tmp_code);
+            break;
+        case 43://
+
+            break;
+            */

@@ -1,0 +1,11 @@
+Var S' 1
+Var S 2
+Var B 3
+Ter a 4
+Ter b 5
+%%
+S' = S
+S = B B
+B = a B
+B = b
+#

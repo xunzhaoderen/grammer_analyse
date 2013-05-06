@@ -1,0 +1,98 @@
+Var program 40
+Var block 41
+Var statList 42
+Var stat 43
+Var decls 44
+Var statement 45
+Var type 46
+Var init_decl_list 47
+Var init_declarator 48
+Var declarator 49
+Var initializer 50
+Var assignment_list 52
+Var initializer_list 53
+Var expression_statement 55
+Var iteration_statement 57
+Var statement_list 58
+Var expression 59
+Var assignment_expression 60
+Var op 61
+Var unary_expression 62
+Var operand 63
+Var unary_op 64
+Ter int 0
+Ter float 1
+Ter id 9
+Ter = 24
+Ter num 7
+Ter [ 18
+Ter ] 19
+Ter , 14
+Ter { 20
+Ter } 21
+Ter return 5
+Ter ; 15
+Ter if 3
+Ter ( 17
+Ter ) 16
+Ter else 4
+Ter for 2
+Ter ++ 28
+Ter < 23
+Ter >= 26
+Ter + 10
+Ter - 11
+Ter * 12
+Ter / 13
+%%
+program = block
+block = M1 { statList }
+M1 = my_null { offset := 0 }
+statList = stat statList
+statList = stat 
+stat = decls
+stat = statement
+decls = type init_decl_list ; { enter(init_decl_list.name,type.type,offset); offset=offset + type.width * init_decl}
+type = int { type.type = interger ; type.width = 4 }
+type = float { type.type = float ; type.width = 4 }
+init_decl_list = init_declarator {init_decl_list.name = init_declarator.name ; init_decl_list.num = 1}
+init_decl_list = init_declarator , init_decl_list { init_decl_list.name; init_decl_list.num = init_declarator.num+1 }
+
+
+
+init_declarator = declarator { init_declarator.name = declarator.name ; init_declarator.num = declarator.num}
+init_declarator = declarator = initializer
+declarator = id { declarator.name = id.name ; declarator.num = 1;}
+declarator = id [ num ] { declarator.name = id.name ; declarator.num = num }
+declarator = id [ id ] {declarator.name = id.name ; declrartor.num = id }
+initializer = assignment_expression {initializer.value = assigment_expression.value , initializer.num =1 }
+initializer = { initializer_list } {initializer.num = initializer_list.num ; initializer.add}
+initializer_list = initializer {initializer_list.}
+initializer_list = initializer , initializer_list
+statement = expression_statement
+statement = if ( expression ) statement else statement
+statement = for ( expression ; expression ; expression ) statement
+statement = return num
+statement =  { statement_list }
+expression_statement = ;
+expression_statement = expression ;
+statement_list = statement 
+statement_list = statement statement_list
+expression = assignment_expression
+expression = id op num
+expression = id ++
+assignment_expression = unary_expression = assignment_expression
+assignment_expression = unary_expression unary_op assignment_expression
+assignment_expression = num
+assignment_expression = declarator
+unary_expression = id
+unary_expression = id [ id ]
+unary_expression = id [ num ]
+unary_expression = num
+op = <
+op = >=
+unary_op = + 
+unary_op = -
+unary_op = *
+unary_op = /
+#
